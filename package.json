@@ -1,9 +1,19 @@
 {
   "name": "nest-seed-proj",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "nest web app 种子项目",
+  "author": "Johnson",
   "license": "MIT",
+  "keywords": [
+    "nest",
+    "nodejs",
+    "graphql",
+    "node框架"
+  ],
+  "repository": {
+    "url": "https://github.com/YES-Lee/nest-seed-proj.git",
+    "type": "github"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
