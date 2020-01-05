@@ -16,7 +16,8 @@
 
 git clone https://github.com/YES-Lee/nest-seed-proj.git # 拉取代码
 cd nest-seed-proj
-npm run start:dev
+yarn install
+yarn start:dev
 
 ```
 
