@@ -9,8 +9,8 @@ const buildSchemaOptions: any = {
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      debug: true,
-      playground: true,
+      debug: process.env.NODE_ENV !== 'production',
+      playground: process.env.NODE_ENV !== 'production',
       autoSchemaFile: 'schema.gql',
       buildSchemaOptions: buildSchemaOptions as BuildSchemaOptions,
       context: ({ req }) => ({ req }),
