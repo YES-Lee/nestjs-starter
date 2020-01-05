@@ -7,6 +7,8 @@ import { AppResolver } from './app.resolver';
 import { appProviders } from './app.providers';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
+import { LoggerModule } from 'nestjs-pino';
+import * as pino from 'pino';
 
 @Global()
 @Module({
@@ -17,7 +19,14 @@ import { UserModule } from './modules/user/user.module';
     UserModule,
     HttpModule.register({
       timeout: 60000
-    })
+    }),
+    LoggerModule.forRoot({
+      enabled: true,
+      timestamp: true,
+      prettyPrint: process.env.NODE_ENV !== 'production',
+      level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
+      useLevelLabels: true,
+    }, process.env.NODE_ENV === 'production' && pino.destination(__dirname + '/app.log'))
   ],
   controllers: [
     AppController
@@ -28,8 +37,7 @@ import { UserModule } from './modules/user/user.module';
     ...appProviders
   ],
   exports: [
-    AuthModule,
-    HttpModule
+    AuthModule
   ]
 })
 export class AppModule {}
