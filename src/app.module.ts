@@ -1,4 +1,4 @@
-import { Module, Global } from '@nestjs/common';
+import { Module, Global, HttpModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
@@ -14,7 +14,10 @@ import { UserModule } from './modules/user/user.module';
     DatabaseModule,
     GraphqlModule,
     AuthModule,
-    UserModule
+    UserModule,
+    HttpModule.register({
+      timeout: 60000
+    })
   ],
   controllers: [
     AppController
@@ -25,7 +28,8 @@ import { UserModule } from './modules/user/user.module';
     ...appProviders
   ],
   exports: [
-    AuthModule
+    AuthModule,
+    HttpModule
   ]
 })
 export class AppModule {}
