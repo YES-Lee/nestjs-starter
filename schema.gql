@@ -29,6 +29,9 @@ type LoginResult {
 }
 
 type Mutation {
+  """发送测试信息"""
+  sendTestMessage(message: String): String
+
   """用户登录"""
   login(
     """用户名"""
@@ -54,6 +57,10 @@ type Query {
     """每页数量"""
     pageSize: Int = 10
   ): UserListResult
+}
+
+type Subscription {
+  onTestMessage: String
 }
 
 """用户信息"""
