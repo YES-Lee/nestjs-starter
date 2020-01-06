@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLModule as GqlModule } from '@nestjs/graphql';
 import { BuildSchemaOptions } from 'type-graphql';
 
 const buildSchemaOptions: any = {
@@ -8,7 +8,7 @@ const buildSchemaOptions: any = {
 
 @Module({
   imports: [
-    GraphQLModule.forRoot({
+    GqlModule.forRoot({
       debug: process.env.NODE_ENV !== 'production',
       playground: process.env.NODE_ENV !== 'production',
       autoSchemaFile: 'schema.gql',
@@ -18,7 +18,7 @@ const buildSchemaOptions: any = {
     }),
   ],
   exports: [
-    GraphQLModule
+    GqlModule
   ]
 })
 export class GraphqlModule {}
