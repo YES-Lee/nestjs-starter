@@ -1,5 +1,5 @@
-import { Controller, Post, Body, Get, Request } from '@nestjs/common';
-import { ApiTags, ApiBody, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import { Controller, Post, Body, Get, Request, Query, ParseIntPipe } from '@nestjs/common';
+import { ApiTags, ApiBody, ApiResponse, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { LoginRequest } from 'src/dto/user/login.request';
 import { LoginResponse } from 'src/dto/user/login.response';
 import { UserService } from './user.service';
@@ -7,6 +7,9 @@ import { ApiResponse as ApiResult } from 'src/dto/support/api.response';
 import { UserDetailResponse } from 'src/dto/user/user-detail.response';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import { RequireAuth } from 'src/decorators/require-auth.decorator.';
+import { UserListResponse } from 'src/dto/user/list.response';
+import { UserListRequest } from 'src/dto/user/list.request';
+import { QueryParseIntPip } from 'src/pipes/query-parse-int.pipe';
 
 @ApiTags('用户')
 @Controller('user')
@@ -30,5 +33,14 @@ export class UserController {
   @Get('getCurrentUser')
   getCurrentUser(@Request() req: any): ApiResult<UserDetailResponse> {
     return this.userService.getCurrent(req.user.id);
+  }
+
+  @ApiOperation({ summary: '获取用户列表' })
+  @ApiResponse({ type: UserListResponse })
+  @RequireAuth()
+  @Get('userList')
+  getUserList(@Query(new QueryParseIntPip(['page', 'pageSize'])) query: UserListRequest): ApiResult<UserListResponse> {
+    console.log(query);
+    return this.userService.getUserList(query);
   }
 }

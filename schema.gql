@@ -9,6 +9,11 @@ enum GenderEnum {
   OTHER
 }
 
+"""分页接口返回数据接口"""
+interface IPageResult {
+  count: Int
+}
+
 """登录返回结果"""
 type LoginResult {
   id: Int
@@ -40,6 +45,15 @@ type Query {
 
   """获取当前登录用户信息"""
   getCurrentUser: UserDetailResult
+
+  """获取用户列表"""
+  userList(
+    """页码"""
+    page: Int = 1
+
+    """每页数量"""
+    pageSize: Int = 10
+  ): UserListResult
 }
 
 """用户信息"""
@@ -51,6 +65,12 @@ type UserDetailResult {
 
   """性别"""
   gender: GenderEnum
+}
+
+"""用户列表"""
+type UserListResult implements IPageResult {
+  count: Int
+  rows: [UserDetailResult]
 }
 
 """用户信息"""

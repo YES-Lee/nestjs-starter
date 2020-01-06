@@ -6,6 +6,8 @@ import { AuthService } from '../auth/auth.service';
 import { ApiResponse } from 'src/dto/support/api.response';
 import { LoginResponse } from 'src/dto/user/login.response';
 import { UserDetailResponse } from 'src/dto/user/user-detail.response';
+import { UserListResponse } from 'src/dto/user/list.response';
+import { UserListRequest } from 'src/dto/user/list.request';
 
 /**
  * 临时数据
@@ -44,5 +46,18 @@ export class UserService {
     } else {
       throw new UnauthorizedException();
     }
+  }
+
+  getUserList(data: UserListRequest): ApiResponse<UserListResponse> {
+    return ApiResponse.success({
+      count: 1,
+      rows: [
+        {
+          id: demoUser.id,
+          username: demoUser.username,
+          gender: demoUser.gender,
+        }
+      ]
+    });
   }
 }
