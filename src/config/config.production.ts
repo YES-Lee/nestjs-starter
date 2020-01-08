@@ -1,4 +1,7 @@
 export default () => ({
+  app: {
+    port: 3200
+  },
   log: {
     level: 'debug',
     path: __dirname + '/app.log',

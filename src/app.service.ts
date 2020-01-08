@@ -20,7 +20,7 @@ export class AppService {
 
   systemInfo(): SystemInfoResult {
     return {
-      version: this.configService.get('version'),
+      version: this.configService.get('app.version'),
       env: process.env.NODE_ENV
     };
   }
