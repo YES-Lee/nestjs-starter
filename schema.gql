@@ -47,7 +47,7 @@ type Query {
   test: String
 
   """环境变量"""
-  info: String
+  systemInfo: SystemInfoResult
 
   """获取当前登录用户信息"""
   getCurrentUser: UserDetailResult
@@ -64,6 +64,15 @@ type Query {
 
 type Subscription {
   onTestMessage: String
+}
+
+"""系统信息"""
+type SystemInfoResult {
+  """版本"""
+  version: String
+
+  """环境变量"""
+  env: String
 }
 
 """用户信息"""

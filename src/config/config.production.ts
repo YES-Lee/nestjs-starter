@@ -1,7 +1,8 @@
 export default () => ({
   log: {
     level: 'debug',
-    path: __dirname + '/app.log'
+    path: __dirname + '/app.log',
+    prettyPrint: false
   },
   database: {
     dialect: 'mysql',

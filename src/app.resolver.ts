@@ -5,6 +5,8 @@ import { PubSub } from 'graphql-subscriptions';
 import { SUBSCRIPTION } from './lib/constant';
 import * as pkg from '../package.json';
 import { ConfigService } from '@nestjs/config';
+import { GQLJson } from './graphql/scalars/json.scalar';
+import { SystemInfoResult } from './graphql/schemas/system/info.result';
 
 @Resolver('App')
 export class AppResolver {
@@ -32,12 +34,11 @@ export class AppResolver {
     return 'success';
   }
 
-  @Query(returns => String, { description: '环境变量' })
-  info() {
-    return JSON.stringify({
+  @Query(returns => SystemInfoResult, { description: '环境变量' })
+  systemInfo() {
+    return {
       version: pkg.version,
       env: process.env.NODE_ENV || '',
-      config: this.configService.get('database')
-    });
+    };
   }
 }

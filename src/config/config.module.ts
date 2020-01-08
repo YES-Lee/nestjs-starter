@@ -16,9 +16,6 @@ alterConfig = alterConfig ? alterConfig : () => ({});
         alterConfig
       ]
     })
-  ],
-  exports: [
-    NestConfigModule
   ]
 })
 export class ConfigModule {}

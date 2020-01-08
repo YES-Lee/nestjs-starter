@@ -30,6 +30,7 @@ import { ConfigService } from '@nestjs/config';
           timestamp: true,
           level: configService.get('log.level'),
           useLevelLabels: true,
+          prettyPrint: configService.get('log.prettyPrint'),
           stream: pino.destination(configService.get('log.path'))
         };
       }
