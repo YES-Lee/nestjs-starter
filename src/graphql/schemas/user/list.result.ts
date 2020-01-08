@@ -9,9 +9,7 @@ import { UserDetailResult } from './user-detail.result';
    */
   implements: IPageResult
 })
-export class UserListResult implements IPageResult<UserDetailResult> {
-  count: number;
-
+export class UserListResult extends IPageResult<UserDetailResult> {
   @Field(type => [UserDetailResult])
   rows: UserDetailResult[];
 }

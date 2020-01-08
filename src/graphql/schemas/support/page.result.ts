@@ -9,5 +9,5 @@ import { InterfaceType, Field, Int } from 'type-graphql';
   /**
    * @important 由于graphql不具有泛型，需要在子类中指定rows类型
    */
-  rows: T[];
+  abstract rows: T[];
  }
