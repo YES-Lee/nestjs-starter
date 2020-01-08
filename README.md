@@ -69,6 +69,27 @@ const result = ApiResponse.error(10001, '请求失败')
 
 `graphql`类型定义为自动化生成（`schema.gql`），可以复用`database/models`下的数据库模型，**graphql定义的是http接口层对象，不应该返回的（如：password）等敏感字段，禁止定义grqphql类型**
 
+## 部署
+
+部署app方式有多种，这里提供一个`pm2`管理方式，有三种部署方式，根据不同场景选择使用
+
+### 编译部署
+
+1. 编译：`npm run build`
+2. 拷贝`package.json`, `pm2.config.js`到`dist`目录（需要修改`pm2.config.js文件`）
+3. `dist`目录上传到服务器
+4. 到`dist`目录执行`npm install --production`
+5. 启动：`pm2 pm2.config.js`
+
+### 仓库部署
+
+1. 在服务器拉取仓库
+2. `npm install`
+3. `npm run build`,
+4. `pm2 pm2.config.js`
+
+### docker部署
+
 ## 相关指令
 
 ### 创建模块
