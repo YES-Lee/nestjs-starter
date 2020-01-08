@@ -1,6 +1,6 @@
 export default () => ({
   app: {
-    port: 3200
+    port: 3100
   },
   log: {
     level: 'debug',
@@ -14,5 +14,9 @@ export default () => ({
     username: 'prod-user',
     password: '123456',
     database: 'test',
+  },
+  graphql: {
+    debug: false,
+    playground: false
   }
 });

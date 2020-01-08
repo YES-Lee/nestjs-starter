@@ -7,5 +7,9 @@ export default () => ({
     level: 'info',
     path: __dirname + '/app.log',
     prettyPrint: true
+  },
+  graphql: {
+    debug: true,
+    playground: true
   }
 });
