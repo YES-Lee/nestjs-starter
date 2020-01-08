@@ -8,7 +8,9 @@ import { appProviders } from './app.providers';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { LoggerModule } from 'nestjs-pino';
+import { ConfigModule } from './config/config.module';
 import * as pino from 'pino';
+import { ConfigService } from '@nestjs/config';
 
 @Global()
 @Module({
@@ -20,13 +22,19 @@ import * as pino from 'pino';
     HttpModule.register({
       timeout: 60000
     }),
-    LoggerModule.forRoot({
-      enabled: true,
-      timestamp: true,
-      prettyPrint: process.env.NODE_ENV !== 'production',
-      level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
-      useLevelLabels: true,
-    }, process.env.NODE_ENV === 'production' && pino.destination(__dirname + '/app.log'))
+    LoggerModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
+        return {
+          enabled: true,
+          timestamp: true,
+          level: configService.get('log.level'),
+          useLevelLabels: true,
+          stream: pino.destination(configService.get('log.path'))
+        };
+      }
+    }),
+    ConfigModule
   ],
   controllers: [
     AppController

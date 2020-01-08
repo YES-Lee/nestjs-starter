@@ -10,7 +10,7 @@ export class AppController {
 
   @ApiOperation({ summary: '测试接口' })
   @Get()
-  testSuccess(@Req() req: any) {
+  testSuccess() {
     return this.appService.testSuccess();
   }
 }

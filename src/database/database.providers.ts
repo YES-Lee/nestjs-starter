@@ -1,18 +1,20 @@
 import { Provider } from '@nestjs/common';
 import { Sequelize } from 'sequelize-typescript';
 import models from './models';
+import { ConfigService } from '@nestjs/config';
 
 export const databaseProviders: Provider[] = [
   {
     provide: 'SEQUELIZE',
-    useFactory: async () => {
+    inject: [ConfigService],
+    useFactory: (configService: ConfigService) => {
       const sequelize = new Sequelize({
-        dialect: 'mysql',
-        host: 'localhost',
-        port: 3306,
-        username: 'root',
-        password: '123456',
-        database: 'test',
+        dialect: configService.get('database.dialect'),
+        host: configService.get('database.host'),
+        port: configService.get('database.port'),
+        username: configService.get('database.username'),
+        password: configService.get('database.password'),
+        database: configService.get('database.database'),
         models,
         define: {
           // 自动添加时间戳字段 (updatedAt, createdAt)

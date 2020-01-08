@@ -408,6 +408,16 @@
     cli-color "2.0.0"
     uuid "3.3.3"
 
+"@nestjs/config@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.npm.taobao.org/@nestjs/config/download/@nestjs/config-0.0.9.tgz#beefb37d8057fd8ea2710aaee95e7c7249a0f158"
+  integrity sha1-vu+zfYBX/Y6icQqu6V58ckmg8Vg=
+  dependencies:
+    dotenv "8.2.0"
+    lodash.get "4.4.2"
+    lodash.set "4.3.2"
+    uuid "3.3.3"
+
 "@nestjs/core@^6.7.2":
   version "6.10.13"
   resolved "https://registry.npm.taobao.org/@nestjs/core/download/@nestjs/core-6.10.13.tgz#5c31f46201e527fbc44889fa92a42c87fd389e4b"
@@ -2682,6 +2692,11 @@ domexception@^1.0.1:
   dependencies:
     webidl-conversions "^4.0.2"
 
+dotenv@8.2.0:
+  version "8.2.0"
+  resolved "https://registry.npm.taobao.org/dotenv/download/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  integrity sha1-l+YZJZradQ7qPk6j4mvO6lQksWo=
+
 dottie@^2.0.0:
   version "2.0.2"
   resolved "https://registry.npm.taobao.org/dottie/download/dottie-2.0.2.tgz?cache=0&sync_timestamp=1575367898894&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdottie%2Fdownload%2Fdottie-2.0.2.tgz#cc91c0726ce3a054ebf11c55fbc92a7f266dd154"
@@ -4812,7 +4827,7 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash.get@^4.4.2:
+lodash.get@4.4.2, lodash.get@^4.4.2:
   version "4.4.2"
   resolved "https://registry.npm.taobao.org/lodash.get/download/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
   integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
@@ -4856,6 +4871,11 @@ lodash.once@^4.0.0:
   version "4.1.1"
   resolved "https://registry.npm.taobao.org/lodash.once/download/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   integrity sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=
+
+lodash.set@4.3.2:
+  version "4.3.2"
+  resolved "https://registry.npm.taobao.org/lodash.set/download/lodash.set-4.3.2.tgz#d8757b1da807dde24816b0d6a84bea1a76230b23"
+  integrity sha1-2HV7HagH3eJIFrDWqEvqGnYjCyM=
 
 lodash.sortby@^4.7.0:
   version "4.7.0"

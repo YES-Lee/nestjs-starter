@@ -46,6 +46,9 @@ type Query {
   """测试接口"""
   test: String
 
+  """环境变量"""
+  info: String
+
   """获取当前登录用户信息"""
   getCurrentUser: UserDetailResult
 
