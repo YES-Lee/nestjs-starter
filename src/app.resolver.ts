@@ -3,17 +3,15 @@ import { Inject } from '@nestjs/common';
 import { PUB_SUB_PROVIDER } from './app.providers';
 import { PubSub } from 'graphql-subscriptions';
 import { SUBSCRIPTION } from './lib/constant';
-import * as pkg from '../package.json';
-import { ConfigService } from '@nestjs/config';
-import { GQLJson } from './graphql/scalars/json.scalar';
 import { SystemInfoResult } from './graphql/schemas/system/info.result';
+import { AppService } from './app.service';
 
 @Resolver('App')
 export class AppResolver {
 
   constructor(
     @Inject(PUB_SUB_PROVIDER) private pubSub: PubSub,
-    private configService: ConfigService
+    private appService: AppService
   ) {}
 
   @Query(returns => String, { description: '测试接口' })
@@ -36,9 +34,6 @@ export class AppResolver {
 
   @Query(returns => SystemInfoResult, { description: '环境变量' })
   systemInfo() {
-    return {
-      version: pkg.version,
-      env: process.env.NODE_ENV || '',
-    };
+    return this.appService.systemInfo();
   }
 }
