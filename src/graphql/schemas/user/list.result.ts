@@ -7,7 +7,7 @@ import { UserDetailResult } from './user-detail.result';
   /**
    * @important 这里的配置是必须的
    */
-  implements: IPageResult
+  implements: IPageResult,
 })
 export class UserListResult extends IPageResult<UserDetailResult> {
   @Field(type => [UserDetailResult])

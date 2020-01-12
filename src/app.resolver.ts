@@ -8,10 +8,9 @@ import { AppService } from './app.service';
 
 @Resolver('App')
 export class AppResolver {
-
   constructor(
     @Inject(PUB_SUB_PROVIDER) private pubSub: PubSub,
-    private appService: AppService
+    private appService: AppService,
   ) {}
 
   @Query(returns => String, { description: '测试接口' })
@@ -20,7 +19,7 @@ export class AppResolver {
   }
 
   @Subscription(returns => String, {
-    resolve: value => value
+    resolve: value => value,
   })
   onTestMessage() {
     return this.pubSub.asyncIterator(SUBSCRIPTION.SEND_TEST_MESSAGE);

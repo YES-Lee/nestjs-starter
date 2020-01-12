@@ -1,7 +1,7 @@
 import { ObjectType, Field } from 'type-graphql';
 
 @ObjectType({
-  description: '系统信息'
+  description: '系统信息',
 })
 export class SystemInfoResult {
   @Field({ description: '版本' })

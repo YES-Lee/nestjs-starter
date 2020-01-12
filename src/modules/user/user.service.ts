@@ -16,24 +16,24 @@ const demoUser: UserModel = {
   id: 1,
   username: 'admin',
   password: 'admin',
-  gender: GenderEnum.MALE
+  gender: GenderEnum.MALE,
 } as UserModel;
 
 @Injectable()
 export class UserService {
-
-  constructor(
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   login(account: LoginRequest): ApiResponse<LoginResponse> {
-    if (account.username === demoUser.username && account.password === demoUser.password) {
+    if (
+      account.username === demoUser.username &&
+      account.password === demoUser.password
+    ) {
       const token = this.authService.sign(demoUser);
       return ApiResponse.success<LoginResponse>({
         id: demoUser.id,
         username: demoUser.username,
         gender: demoUser.gender,
-        token
+        token,
       });
     } else {
       return ApiResponse.error(10001, '用户名或密码错误');
@@ -56,8 +56,8 @@ export class UserService {
           id: demoUser.id,
           username: demoUser.username,
           gender: demoUser.gender,
-        }
-      ]
+        },
+      ],
     });
   }
 }

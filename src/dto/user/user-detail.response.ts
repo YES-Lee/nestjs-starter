@@ -2,7 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { GenderEnum } from 'src/enums/gender.enum';
 
 export class UserDetailResponse {
-
   @ApiProperty({ description: '用户ID' })
   id: number;
 

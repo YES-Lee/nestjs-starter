@@ -1,16 +1,21 @@
-import { Table, PrimaryKey, AutoIncrement, Column, Model } from 'sequelize-typescript';
+import {
+  Table,
+  PrimaryKey,
+  AutoIncrement,
+  Column,
+  Model,
+} from 'sequelize-typescript';
 import { ObjectType, Field, Int } from 'type-graphql';
 import { ApiProperty } from '@nestjs/swagger';
 import { GenderEnum } from 'src/enums/gender.enum';
 
 @Table({
-  tableName: 'user'
+  tableName: 'user',
 })
 @ObjectType({
-  description: '用户信息'
+  description: '用户信息',
 })
 export class UserModel extends Model<UserModel> {
-
   @Field(type => Int)
   @PrimaryKey
   @AutoIncrement

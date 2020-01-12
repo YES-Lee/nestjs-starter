@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ApiResponse<T> {
-
   /**
    * 错误码，只在异常时返回错误码
    */
@@ -64,6 +63,8 @@ export class ApiResponse<T> {
   }
 
   static error(error_code: number, error_message: string) {
-    return new ApiResponse<any>().setErrorCode(error_code).setErrorMessage(error_message);
+    return new ApiResponse<any>()
+      .setErrorCode(error_code)
+      .setErrorMessage(error_message);
   }
 }

@@ -11,10 +11,7 @@ import { UserListArgs } from 'src/graphql/schemas/user/list.args';
 
 @Resolver('User')
 export class UserResolver {
-
-  constructor(
-    private userService: UserService
-  ) {}
+  constructor(private userService: UserService) {}
 
   @Mutation(returns => LoginResult, { description: '用户登录' })
   login(@Args() account: LoginArgs) {

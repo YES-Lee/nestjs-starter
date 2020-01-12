@@ -26,5 +26,5 @@ export const GQLDate = new GraphQLScalarType({
    */
   parseLiteral(ast: any) {
     return ast.value;
-  }
+  },
 });

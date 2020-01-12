@@ -1,6 +1,12 @@
 import { Controller, Get, Req } from '@nestjs/common';
 import { AppService } from './app.service';
-import { ApiTags, ApiResponse, ApiBearerAuth, ApiSecurity, ApiOperation } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiResponse,
+  ApiBearerAuth,
+  ApiSecurity,
+  ApiOperation,
+} from '@nestjs/swagger';
 import { RequireAuth } from './decorators/require-auth.decorator.';
 
 @ApiTags('测试')

@@ -11,11 +11,8 @@ alterConfig = alterConfig ? alterConfig : () => ({});
   imports: [
     NestConfigModule.forRoot({
       isGlobal: true,
-      load: [
-        defaultConfig,
-        alterConfig
-      ]
-    })
-  ]
+      load: [defaultConfig, alterConfig],
+    }),
+  ],
 })
 export class ConfigModule {}

@@ -9,7 +9,8 @@ async function bootstrap() {
 
   app.useLogger(app.get(Logger));
 
-  const swaggerOptions = new DocumentBuilder().addBearerAuth()
+  const swaggerOptions = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('Nest种子项目')
     .setDescription('nest + graphql + sequelize快速开发框架')
     .setVersion('1.0')
@@ -18,6 +19,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerOptions);
   SwaggerModule.setup('swagger', app, document);
 
-  await app.listen(process.env.PORT || app.get(ConfigService).get('app.port') || 3000);
+  await app.listen(
+    process.env.PORT || app.get(ConfigService).get('app.port') || 3000,
+  );
 }
 bootstrap();

@@ -1,11 +1,11 @@
 export default () => ({
   app: {
-    port: 3100
+    port: 3100,
   },
   log: {
     level: 'debug',
     path: __dirname + '/app.log',
-    prettyPrint: false
+    prettyPrint: false,
   },
   database: {
     dialect: 'mysql',
@@ -17,6 +17,6 @@ export default () => ({
   },
   graphql: {
     debug: false,
-    playground: false
-  }
+    playground: false,
+  },
 });

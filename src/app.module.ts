@@ -20,7 +20,7 @@ import { ConfigService } from '@nestjs/config';
     AuthModule,
     UserModule,
     HttpModule.register({
-      timeout: 60000
+      timeout: 60000,
     }),
     LoggerModule.forRootAsync({
       inject: [ConfigService],
@@ -31,22 +31,14 @@ import { ConfigService } from '@nestjs/config';
           level: configService.get('log.level'),
           useLevelLabels: true,
           prettyPrint: configService.get('log.prettyPrint'),
-          stream: pino.destination(configService.get('log.path'))
+          stream: pino.destination(configService.get('log.path')),
         };
-      }
+      },
     }),
-    ConfigModule
+    ConfigModule,
   ],
-  controllers: [
-    AppController
-  ],
-  providers: [
-    AppService,
-    AppResolver,
-    ...appProviders
-  ],
-  exports: [
-    AuthModule
-  ]
+  controllers: [AppController],
+  providers: [AppService, AppResolver, ...appProviders],
+  exports: [AuthModule],
 })
 export class AppModule {}

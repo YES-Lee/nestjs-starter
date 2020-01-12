@@ -6,9 +6,11 @@ export class AuthService {
   constructor(private readonly jwtService: JwtService) {}
 
   sign(payload: any): string {
-    const token = 'Bearer ' + this.jwtService.sign(payload, {
-      expiresIn: '30d'
-    });
+    const token =
+      'Bearer ' +
+      this.jwtService.sign(payload, {
+        expiresIn: '30d',
+      });
 
     return token;
   }

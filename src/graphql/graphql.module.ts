@@ -4,7 +4,7 @@ import { BuildSchemaOptions } from 'type-graphql';
 import { ConfigService } from '@nestjs/config';
 
 const buildSchemaOptions: any = {
-  nullableByDefault: true // shema字段默认可为空
+  nullableByDefault: true, // shema字段默认可为空
 };
 
 @Module({
@@ -18,13 +18,11 @@ const buildSchemaOptions: any = {
           autoSchemaFile: 'schema.gql',
           buildSchemaOptions: buildSchemaOptions as BuildSchemaOptions,
           context: ({ req }) => ({ req }),
-          installSubscriptionHandlers: true
+          installSubscriptionHandlers: true,
         };
-      }
+      },
     }),
   ],
-  exports: [
-    GqlModule
-  ]
+  exports: [GqlModule],
 })
 export class GraphqlModule {}

@@ -34,8 +34,7 @@ export const databaseProviders: Provider[] = [
           // to the current date (when deletion was done). paranoid will only work if
           // timestamps are enabled
           paranoid: true,
-          getterMethods: {
-          },
+          getterMethods: {},
         },
       });
 

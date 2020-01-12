@@ -8,15 +8,15 @@ import { GqlAuthGuard } from './graphql.guard';
 
 export const jwtOptions = {
   secret: JWT_KEY,
-  signOptions: { expiresIn: '2h', issuer: 'nestapp' }
+  signOptions: { expiresIn: '2h', issuer: 'nestapp' },
 };
 
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register(jwtOptions)
+    JwtModule.register(jwtOptions),
   ],
   providers: [AuthService, JwtStrategy, GqlAuthGuard],
-  exports: [AuthService]
+  exports: [AuthService],
 })
 export class AuthModule {}

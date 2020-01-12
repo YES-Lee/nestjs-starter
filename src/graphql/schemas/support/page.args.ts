@@ -5,7 +5,6 @@ import { Field, Int, ArgsType } from 'type-graphql';
  */
 @ArgsType()
 export class IPageArgs {
-
   @Field(type => Int, { description: '页码', defaultValue: 1 })
   page: number;
 

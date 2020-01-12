@@ -23,5 +23,5 @@ export const GQLJson = new GraphQLScalarType({
    */
   parseLiteral(ast: any) {
     return ast.value;
-  }
+  },
 });
