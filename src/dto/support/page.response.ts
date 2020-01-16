@@ -3,5 +3,5 @@ import { ApiProperty } from '@nestjs/swagger';
 export abstract class IPageResponse<T> {
   @ApiProperty({ description: '总数' })
   count: number;
-  rows: T[];
+  abstract rows: T[];
 }
