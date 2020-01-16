@@ -3,7 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiHeader, ApiBearerAuth } from '@nestjs/swagger';
 
 export function RequireAuth() {
-  return (target: any, key: string, descriptor: PropertyDescriptor) => {
+  return (target: any, key?: string, descriptor?: PropertyDescriptor) => {
     UseGuards(AuthGuard('jwt'))(target, key, descriptor);
     ApiBearerAuth()(target, key, descriptor);
     // ApiHeader({
