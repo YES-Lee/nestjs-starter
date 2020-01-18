@@ -1,3 +1,5 @@
+import * as path from 'path';
+
 export default () => ({
   app: {
     version: '0.1.1',
@@ -5,7 +7,7 @@ export default () => ({
   },
   log: {
     level: 'info',
-    path: __dirname + '/app.log',
+    path: path.resolve(__dirname, '../app.log'),
     prettyPrint: true,
   },
   graphql: {

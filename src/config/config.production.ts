@@ -1,10 +1,12 @@
+import * as path from 'path';
+
 export default () => ({
   app: {
     port: 3100,
   },
   log: {
     level: 'debug',
-    path: __dirname + '/app.log',
+    path: path.resolve(__dirname, '../app.log'),
     prettyPrint: false,
   },
   database: {
