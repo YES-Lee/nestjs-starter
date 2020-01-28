@@ -22,6 +22,9 @@ export class ApiResponse<T> {
   @ApiProperty({ description: '响应数据' })
   private data: T;
 
+  @ApiProperty({ description: '请求路径' })
+  private path: string;
+
   constructor() {
     this.timestamp = new Date().getTime();
   }
@@ -55,6 +58,14 @@ export class ApiResponse<T> {
   }
   setData(data: T): ApiResponse<T> {
     this.data = data;
+    return this;
+  }
+
+  getPath(): string {
+    return this.path;
+  }
+  setPath(path: string): ApiResponse<T> {
+    this.path = path;
     return this;
   }
 

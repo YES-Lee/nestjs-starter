@@ -10,7 +10,7 @@ import {
 import { RequireAuth } from './decorators/require-auth.decorator.';
 
 @ApiTags('测试')
-@Controller()
+@Controller('test')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
@@ -18,5 +18,12 @@ export class AppController {
   @Get()
   testSuccess() {
     return this.appService.testSuccess();
+  }
+
+  @ApiOperation({ summary: 'unauthorized' })
+  @RequireAuth()
+  @Get('unauthorized')
+  unauthorized() {
+    return 'success';
   }
 }
