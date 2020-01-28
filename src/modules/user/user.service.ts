@@ -5,7 +5,6 @@ import { LoginRequest } from 'src/dto/user/login.request';
 import { AuthService } from '../auth/auth.service';
 import { ApiResponse } from 'src/dto/support/api.response';
 import { LoginResponse } from 'src/dto/user/login.response';
-import { UserDetailResponse } from 'src/dto/user/user-detail.response';
 import { UserListResponse } from 'src/dto/user/list.response';
 import { UserListRequest } from 'src/dto/user/list.request';
 
@@ -34,29 +33,29 @@ export class UserService {
         username: demoUser.username,
         gender: demoUser.gender,
         token,
-      });
+      } as LoginResponse);
     } else {
       return ApiResponse.error(10001, '用户名或密码错误');
     }
   }
 
-  getCurrent(id: number): ApiResponse<UserDetailResponse> {
+  getCurrent(id: number): ApiResponse<UserModel> {
     if (id === demoUser.id) {
-      return ApiResponse.success<UserDetailResponse>(demoUser);
+      return ApiResponse.success<UserModel>(demoUser);
     } else {
       throw new UnauthorizedException();
     }
   }
 
   getUserList(data: UserListRequest): ApiResponse<UserListResponse> {
+    const user = new UserModel();
+    user.id = demoUser.id;
+    user.username = demoUser.username;
+    user.gender = demoUser.gender;
     return ApiResponse.success({
       count: 1,
       rows: [
-        {
-          id: demoUser.id,
-          username: demoUser.username,
-          gender: demoUser.gender,
-        },
+        user
       ],
     });
   }

@@ -16,12 +16,14 @@ import { GenderEnum } from 'src/enums/gender.enum';
   description: '用户信息',
 })
 export class UserModel extends Model<UserModel> {
+  @ApiProperty({ description: '用户ID' })
   @Field(type => Int)
   @PrimaryKey
   @AutoIncrement
   @Column
   id: number;
 
+  @ApiProperty({ description: '用户名' })
   @Field({ description: '用户名' })
   @Column
   username: string;
@@ -29,6 +31,7 @@ export class UserModel extends Model<UserModel> {
   @Column
   password: string;
 
+  @ApiProperty({ type: () => GenderEnum, description: '性别' })
   @Field(type => GenderEnum, { description: '性别' })
   @Column
   gender: GenderEnum;

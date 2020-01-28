@@ -18,12 +18,12 @@ import { LoginRequest } from 'src/dto/user/login.request';
 import { LoginResponse } from 'src/dto/user/login.response';
 import { UserService } from './user.service';
 import { ApiResponse as ApiResult } from 'src/dto/support/api.response';
-import { UserDetailResponse } from 'src/dto/user/user-detail.response';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import { RequireAuth } from 'src/decorators/require-auth.decorator.';
 import { UserListResponse } from 'src/dto/user/list.response';
 import { UserListRequest } from 'src/dto/user/list.request';
 import { QueryParseIntPip } from 'src/pipes/query-parse-int.pipe';
+import { UserModel } from '../../database/models/user.model';
 
 @ApiTags('用户')
 @Controller('user')
@@ -39,10 +39,10 @@ export class UserController {
   }
 
   @ApiOperation({ summary: '获取当前登录用户信息' })
-  @ApiResponse({ type: UserDetailResponse })
+  @ApiResponse({ type: UserModel })
   @RequireAuth()
   @Get('getCurrentUser')
-  getCurrentUser(@Request() req: any): ApiResult<UserDetailResponse> {
+  getCurrentUser(@Request() req: any): ApiResult<UserModel> {
     return this.userService.getCurrent(req.user.id);
   }
 

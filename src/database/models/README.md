@@ -1,6 +1,6 @@
 # 数据库模型
 
-`src/database/models`目录存放数据库对象映射模型（sequelize），一个模型对应一个数据表。模型可以同时用作`graphql`类型，**但是禁止直接用于`RESTFUL`接口返回结果，具体返回内容需要在查询时限制敏感信息**
+`src/database/models`目录存放数据库对象映射模型（sequelize），一个模型对应一个数据表。模型可以同时用作`graphql`类型
 
 ## 添加模型
 
