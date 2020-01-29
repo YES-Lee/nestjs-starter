@@ -31,7 +31,7 @@ export class UserModel extends Model<UserModel> {
   @Column
   password: string;
 
-  @ApiProperty({ type: () => GenderEnum, description: '性别' })
+  @ApiProperty({ enum: GenderEnum, description: '性别' })
   @Field(type => GenderEnum, { description: '性别' })
   @Column
   gender: GenderEnum;
