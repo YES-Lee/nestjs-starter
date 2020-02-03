@@ -2,12 +2,13 @@ import { Provider } from '@nestjs/common';
 import { Sequelize } from 'sequelize-typescript';
 import models from './models';
 import { ConfigService } from '@nestjs/config';
+import { Logger } from 'nestjs-pino';
 
 export const databaseProviders: Provider[] = [
   {
     provide: 'SEQUELIZE',
-    inject: [ConfigService],
-    useFactory: (configService: ConfigService) => {
+    inject: [ConfigService, Logger],
+    useFactory: (configService: ConfigService, logger: Logger) => {
       const sequelize = new Sequelize({
         dialect: configService.get('database.dialect'),
         host: configService.get('database.host'),
@@ -16,6 +17,10 @@ export const databaseProviders: Provider[] = [
         password: configService.get('database.password'),
         database: configService.get('database.database'),
         models,
+        logging: str => {
+          logger.debug({ executeSQL: str });
+          console.log(str);
+        },
         define: {
           // 自动添加时间戳字段 (updatedAt, createdAt)
           timestamps: true,
