@@ -5,6 +5,7 @@ import { Logger } from 'nestjs-pino';
 import { ConfigService } from '@nestjs/config';
 import { ResponseFormatInterceptor } from './interceptors/response-format.interceptor';
 import { UnauthorizedExceptionFilter } from './filters/unauthorized-exception.filter';
+import { InternalExceptionFilter } from './filters/internal-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { logger: false });
@@ -22,7 +23,10 @@ async function bootstrap() {
   SwaggerModule.setup('swagger', app, document);
 
   app.useGlobalInterceptors(new ResponseFormatInterceptor(app.get(Logger)));
-  app.useGlobalFilters(new UnauthorizedExceptionFilter());
+  app.useGlobalFilters(
+    new InternalExceptionFilter(app.get(Logger)),
+    new UnauthorizedExceptionFilter()
+  );
 
   await app.listen(
     process.env.PORT || app.get(ConfigService).get('app.port') || 3000,
