@@ -28,11 +28,16 @@ graphql plaground地址：`http://localhost:3000/graphql`
 
 ``` text
 src
+├─ config // 配置模块
 ├─ database // 数据库模块
 │  └─ models // 存放sequelize/graphql数据库模型
 ├─ decorators // 自定义装饰器目录
 ├─ dto // restful 接口模型目录
 ├─ graphql // graphql 模块
+├─ enums // 枚举目录
+├─ filters // error filters
+├─ interceptors // interceptors
+├─ pipes // pipes
 └─ modules // 业务逻辑模块目录，所有业务相关逻辑都放到该目录对应的模块
 ```
 
@@ -67,7 +72,7 @@ const result = ApiResponse.error(10001, '请求失败')
 
 ## 接口规范(graphql)
 
-`graphql`类型定义为自动化生成（`schema.gql`），可以复用`database/models`下的数据库模型，**graphql定义的是http接口层对象，不应该返回的（如：password）等敏感字段，禁止定义grqphql类型**
+`graphql`类型定义为自动化生成（`schema.gql`），可以复用`database/models`下的数据库模型，**graphql定义的是http接口层对象，不应该返回的（如：password）等敏感字段，不建议定义grqphql类型**
 
 ## 部署
 

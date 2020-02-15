@@ -17,9 +17,9 @@ export const databaseProviders: Provider[] = [
         password: configService.get('database.password'),
         database: configService.get('database.database'),
         models,
-        logging: str => {
-          logger.debug({ executeSQL: str });
-          console.log(str);
+        logging: (str, o: any) => {
+          logger.debug({ executeSQL: str, bind: o.bind });
+          console.log(str, o.bind);
         },
         define: {
           // 自动添加时间戳字段 (updatedAt, createdAt)

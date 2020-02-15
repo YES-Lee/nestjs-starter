@@ -5,9 +5,12 @@ export default () => ({
     port: 3100,
   },
   log: {
+    enabled: true,
+    timestamp: true,
+    useLevelLabels: true,
+    prettyPrint: false,
     level: 'debug',
     path: path.resolve(__dirname, '../app.log'),
-    prettyPrint: false,
   },
   database: {
     dialect: 'mysql',
@@ -21,4 +24,7 @@ export default () => ({
     debug: false,
     playground: false,
   },
+  swagger: {
+    enable: false
+  }
 });

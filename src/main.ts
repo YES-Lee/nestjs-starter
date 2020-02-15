@@ -12,15 +12,19 @@ async function bootstrap() {
 
   app.useLogger(app.get(Logger));
 
-  const swaggerOptions = new DocumentBuilder()
-    .addBearerAuth()
-    .setTitle('Nest种子项目')
-    .setDescription('nest + graphql + sequelize快速开发框架')
-    .setVersion('1.0')
-    .build();
+  const config = app.get(ConfigService);
 
-  const document = SwaggerModule.createDocument(app, swaggerOptions);
-  SwaggerModule.setup('swagger', app, document);
+  if (config.get('swagger.enabled')) {
+    const swaggerOptions = new DocumentBuilder()
+      .addBearerAuth()
+      .setTitle('Nest种子项目')
+      .setDescription('nest + graphql + sequelize快速开发框架')
+      .setVersion('1.0')
+      .build();
+
+    const document = SwaggerModule.createDocument(app, swaggerOptions);
+    SwaggerModule.setup(config.get('swagger.path'), app, document);
+  }
 
   app.useGlobalInterceptors(new ResponseFormatInterceptor(app.get(Logger)));
   app.useGlobalFilters(

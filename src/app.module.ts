@@ -26,10 +26,10 @@ import { ConfigService } from '@nestjs/config';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         return {
-          enabled: true,
-          timestamp: true,
+          enabled: configService.get('log.enabled'),
+          timestamp: configService.get('log.timestamp'),
           level: configService.get('log.level'),
-          useLevelLabels: true,
+          useLevelLabels: configService.get('log.useLevelLabels'),
           prettyPrint: configService.get('log.prettyPrint'),
           stream: pino.destination(configService.get('log.path')),
         };

@@ -2,7 +2,6 @@ import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
 import { Logger } from 'nestjs-pino';
 import { Request, Response } from 'express';
 import { ApiResponse } from '../dto/support/api.response';
-import { ERRORS } from '../constants/errors.constant';
 
 @Catch()
 export class InternalExceptionFilter implements ExceptionFilter<any> {
@@ -17,6 +16,6 @@ export class InternalExceptionFilter implements ExceptionFilter<any> {
     this.logger.error(exception);
     console.error(exception);
 
-    response.status(500).json(ApiResponse.error(ERRORS.INTERNAL_ERROR.error_code, ERRORS.INTERNAL_ERROR.error_message).setPath(request.path));
+    response.status(500).json(ApiResponse.error(500, 'internal error').setPath(request.path));
   }
 }
