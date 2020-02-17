@@ -18,8 +18,10 @@ export const databaseProviders: Provider[] = [
         database: configService.get('database.database'),
         models,
         logging: (str, o: any) => {
-          logger.debug({ executeSQL: str, bind: o.bind });
-          console.log(str, o.bind);
+          if (configService.get('log.enabled')) {
+            logger.debug({ executeSQL: str, bind: o.bind });
+            console.log(str, o.bind);
+          }
         },
         define: {
           // 自动添加时间戳字段 (updatedAt, createdAt)
