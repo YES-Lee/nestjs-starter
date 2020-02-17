@@ -7,7 +7,7 @@ import {
 } from 'sequelize-typescript';
 import { ObjectType, Field, Int } from 'type-graphql';
 import { ApiProperty } from '@nestjs/swagger';
-import { GenderEnum } from 'src/enums/gender.enum';
+import { GenderEnum } from '../../enums/gender.enum';
 
 @Table({
   tableName: 'user',

@@ -1,5 +1,5 @@
-import { UserModel } from 'src/database/models/user.model';
 import { ObjectType, Field } from 'type-graphql';
+import { UserModel } from '../../../database/models/user.model';
 
 @ObjectType({
   description: '登录返回结果',

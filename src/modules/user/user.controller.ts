@@ -14,16 +14,15 @@ import {
   ApiOperation,
   ApiQuery,
 } from '@nestjs/swagger';
-import { LoginRequest } from 'src/dto/user/login.request';
-import { LoginResponse } from 'src/dto/user/login.response';
 import { UserService } from './user.service';
-import { ApiResponse as ApiResult } from 'src/dto/support/api.response';
-import { CurrentUser } from 'src/decorators/current-user.decorator';
-import { RequireAuth } from 'src/decorators/require-auth.decorator.';
-import { UserListResponse } from 'src/dto/user/list.response';
-import { UserListRequest } from 'src/dto/user/list.request';
-import { QueryParseIntPip } from 'src/pipes/query-parse-int.pipe';
 import { UserModel } from '../../database/models/user.model';
+import { LoginRequest } from '../../dto/user/login.request';
+import { LoginResponse } from '../../dto/user/login.response';
+import { ApiResponse as ApiResult } from '../../dto/support/api.response';
+import { RequireAuth } from '../../decorators/require-auth.decorator.';
+import { UserListResponse } from '../../dto/user/list.response';
+import { UserListRequest } from '../../dto/user/list.request';
+import { QueryParseIntPip } from '../../pipes/query-parse-int.pipe';
 
 @ApiTags('用户')
 @Controller('user')

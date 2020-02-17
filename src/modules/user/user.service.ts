@@ -1,12 +1,12 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UserModel } from 'src/database/models/user.model';
-import { GenderEnum } from 'src/enums/gender.enum';
-import { LoginRequest } from 'src/dto/user/login.request';
 import { AuthService } from '../auth/auth.service';
-import { ApiResponse } from 'src/dto/support/api.response';
-import { LoginResponse } from 'src/dto/user/login.response';
-import { UserListResponse } from 'src/dto/user/list.response';
-import { UserListRequest } from 'src/dto/user/list.request';
+import { UserModel } from '../../database/models/user.model';
+import { GenderEnum } from '../../enums/gender.enum';
+import { LoginRequest } from '../../dto/user/login.request';
+import { LoginResponse } from '../../dto/user/login.response';
+import { ApiResponse } from '../../dto/support/api.response';
+import { UserListRequest } from '../../dto/user/list.request';
+import { UserListResponse } from '../../dto/user/list.response';
 
 /**
  * 临时数据
