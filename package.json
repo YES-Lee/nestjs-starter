@@ -1,5 +1,5 @@
 {
-  "name": "nest-seed-proj",
+  "name": "nestjs-starter",
   "version": "0.0.1",
   "description": "nest web app 种子项目",
   "author": "Johnson",
@@ -10,7 +10,7 @@
     "node框架"
   ],
   "repository": {
-    "url": "https://github.com/YES-Lee/nest-seed-proj.git",
+    "url": "https://github.com/YES-Lee/nestjs-starter.git",
     "type": "github"
   },
   "scripts": {

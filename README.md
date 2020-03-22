@@ -13,8 +13,8 @@
 
 ```bash
 
-git clone https://github.com/YES-Lee/nest-seed-proj.git # 拉取代码
-cd nest-seed-proj
+git clone https://github.com/YES-Lee/nestjs-starter.git # 拉取代码
+cd nestjs-starter
 yarn install
 yarn start:dev
 
