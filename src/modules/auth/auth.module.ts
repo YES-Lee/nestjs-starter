@@ -4,7 +4,6 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import { JWT_KEY } from './constants';
-import { GqlAuthGuard } from './graphql.guard';
 
 export const jwtOptions = {
   secret: JWT_KEY,
@@ -16,7 +15,7 @@ export const jwtOptions = {
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register(jwtOptions),
   ],
-  providers: [AuthService, JwtStrategy, GqlAuthGuard],
+  providers: [AuthService, JwtStrategy],
   exports: [AuthService],
 })
 export class AuthModule {}

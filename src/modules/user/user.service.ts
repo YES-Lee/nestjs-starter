@@ -1,62 +1,49 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, Inject } from '@nestjs/common';
 import { AuthService } from '../auth/auth.service';
-import { UserModel } from '../../database/models/user.model';
+import { UserEntity } from '../../database/entities/user.entity';
 import { GenderEnum } from '../../enums/gender.enum';
 import { LoginRequest } from '../../dto/user/login.request';
 import { LoginResponse } from '../../dto/user/login.response';
 import { ApiResponse } from '../../dto/support/api.response';
 import { UserListRequest } from '../../dto/user/list.request';
 import { UserListResponse } from '../../dto/user/list.response';
-
-/**
- * 临时数据
- */
-const demoUser: UserModel = {
-  id: 1,
-  username: 'admin',
-  password: 'admin',
-  gender: GenderEnum.MALE,
-} as UserModel;
+import { USER_REPO } from './user.providers';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    @Inject(USER_REPO) private userRepo: Repository<UserEntity>
+  ) {}
 
-  login(account: LoginRequest): ApiResponse<LoginResponse> {
-    if (
-      account.username === demoUser.username &&
-      account.password === demoUser.password
-    ) {
-      const token = this.authService.sign(demoUser);
-      return ApiResponse.success<LoginResponse>({
-        id: demoUser.id,
-        username: demoUser.username,
-        gender: demoUser.gender,
-        token,
-      } as LoginResponse);
-    } else {
-      return ApiResponse.error(10001, '用户名或密码错误');
+  async login(account: LoginRequest): Promise<ApiResponse<LoginResponse>> {
+    const user = await this.userRepo.findOne({ username: account.username, password: account.password });
+    if (!user) {
+      throw new Error('用户名或密码错误');
     }
-  }
-
-  getCurrent(id: number): ApiResponse<UserModel> {
-    if (id === demoUser.id) {
-      return ApiResponse.success<UserModel>(demoUser);
-    } else {
-      throw new UnauthorizedException();
-    }
-  }
-
-  getUserList(data: UserListRequest): ApiResponse<UserListResponse> {
-    const user = new UserModel();
-    user.id = demoUser.id;
-    user.username = demoUser.username;
-    user.gender = demoUser.gender;
+    const token = this.authService.sign({...user});
     return ApiResponse.success({
-      count: 1,
-      rows: [
-        user
-      ],
+      ...user,
+      token,
+    });
+  }
+
+  async getCurrent(id: number): Promise<ApiResponse<UserEntity>> {
+    const result = await this.userRepo.findOne(id);
+    return ApiResponse.success(result);
+  }
+
+  async getUserList(data: UserListRequest): Promise<ApiResponse<UserListResponse>> {
+    const [rows, count] = await this.userRepo
+      .createQueryBuilder()
+      .limit(data.pageSize)
+      .offset((data.page - 1) * data.pageSize)
+      .getManyAndCount();
+
+    return ApiResponse.success({
+      count,
+      rows
     });
   }
 }

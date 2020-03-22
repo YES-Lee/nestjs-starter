@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UserModel } from '../../database/models/user.model';
+import { UserEntity } from '../../database/entities/user.entity';
 
-export class LoginResponse extends UserModel {
+export class LoginResponse extends UserEntity {
   @ApiProperty({ description: '登录认证令牌' })
   token: string;
 }

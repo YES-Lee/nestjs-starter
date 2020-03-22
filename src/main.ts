@@ -6,6 +6,7 @@ import { ConfigService } from '@nestjs/config';
 import { ResponseFormatInterceptor } from './interceptors/response-format.interceptor';
 import { UnauthorizedExceptionFilter } from './filters/unauthorized-exception.filter';
 import { InternalExceptionFilter } from './filters/internal-exception.filter';
+import { NotFoundExceptionFilter } from './filters/not-found-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,11 +15,11 @@ async function bootstrap() {
 
   const config = app.get(ConfigService);
 
-  if (config.get('swagger.enabled')) {
+  if (config.get('swagger.enable')) {
     const swaggerOptions = new DocumentBuilder()
       .addBearerAuth()
       .setTitle('Nest种子项目')
-      .setDescription('nest + graphql + sequelize快速开发框架')
+      .setDescription('nestjs快速开发框架')
       .setVersion('1.0')
       .build();
 
@@ -27,9 +28,13 @@ async function bootstrap() {
   }
 
   app.useGlobalInterceptors(new ResponseFormatInterceptor(app.get(Logger)));
+  /**
+   * 最后注册的filter最先执行
+   */
   app.useGlobalFilters(
     new InternalExceptionFilter(app.get(Logger)),
-    new UnauthorizedExceptionFilter()
+    new UnauthorizedExceptionFilter(),
+    new NotFoundExceptionFilter(),
   );
 
   await app.listen(

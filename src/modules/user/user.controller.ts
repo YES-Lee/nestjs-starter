@@ -15,7 +15,7 @@ import {
   ApiQuery,
 } from '@nestjs/swagger';
 import { UserService } from './user.service';
-import { UserModel } from '../../database/models/user.model';
+import { UserEntity } from '../../database/entities/user.entity';
 import { LoginRequest } from '../../dto/user/login.request';
 import { LoginResponse } from '../../dto/user/login.response';
 import { ApiResponse as ApiResult } from '../../dto/support/api.response';
@@ -33,15 +33,15 @@ export class UserController {
   @ApiBody({ type: LoginRequest, description: '登录参数' })
   @ApiResponse({ type: LoginResponse })
   @Post('login')
-  login(@Body() data: LoginRequest): ApiResult<LoginResponse> {
+  login(@Body() data: LoginRequest) {
     return this.userService.login(data);
   }
 
   @ApiOperation({ summary: '获取当前登录用户信息' })
-  @ApiResponse({ type: UserModel })
+  @ApiResponse({ type: UserEntity })
   @RequireAuth()
   @Get('getCurrentUser')
-  getCurrentUser(@Request() req: any): ApiResult<UserModel> {
+  getCurrentUser(@Request() req: any) {
     return this.userService.getCurrent(req.user.id);
   }
 
@@ -51,7 +51,7 @@ export class UserController {
   @Get('userList')
   getUserList(
     @Query(new QueryParseIntPip(['page', 'pageSize'])) query: UserListRequest,
-  ): ApiResult<UserListResponse> {
+  ) {
     console.log(query);
     return this.userService.getUserList(query);
   }

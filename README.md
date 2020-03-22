@@ -2,8 +2,7 @@
 
 集成了如下技术：
 
-* ORM：sequelize
-* 接口：graphql
+* ORM：typeorm
 * 认证：passport
 * 文档：swagger
 * 日志工具：nest-pino
@@ -21,8 +20,7 @@ yarn start:dev
 
 ```
 
-swagger地址：`http://localhost:3000/swagger`
-graphql plaground地址：`http://localhost:3000/graphql`
+swagger地址：`http://localhost:3001/swagger`
 
 ## 项目结构
 
@@ -30,10 +28,9 @@ graphql plaground地址：`http://localhost:3000/graphql`
 src
 ├─ config // 配置模块
 ├─ database // 数据库模块
-│  └─ models // 存放sequelize/graphql数据库模型
+│  └─ entities // typeorm实体类
 ├─ decorators // 自定义装饰器目录
 ├─ dto // restful 接口模型目录
-├─ graphql // graphql 模块
 ├─ enums // 枚举目录
 ├─ filters // error filters
 ├─ interceptors // interceptors
@@ -69,11 +66,6 @@ const result = ApiResponse.success(data)
 // 请求失败
 const result = ApiResponse.error(10001, '请求失败')
 ```
-
-## 接口规范(graphql)
-
-`graphql`类型定义为自动化生成（`schema.gql`），可以复用`database/models`下的数据库模型，**graphql定义的是http接口层对象，不应该返回的（如：password）等敏感字段，不建议定义grqphql类型**
-
 ## 部署
 
 部署app方式有多种，这里提供一个`pm2`管理方式，有三种部署方式，根据不同场景选择使用
@@ -119,10 +111,6 @@ const result = ApiResponse.error(10001, '请求失败')
 * 基础2 [typescript] [https://www.tslang.cn/docs/home.html](https://www.tslang.cn/docs/home.html)
 * 项目框架 [nestjs] [https://docs.nestjs.com/](https://docs.nestjs.com/)
 * 框架平台 [express] [https://expressjs.com/](https://expressjs.com/)
-* 数据库ORM框架 [sequelize] [https://sequelize.org/v5/](https://sequelize.org/v5/)
-* sequelize扩展 [sequelize-typescript] [https://github.com/RobinBuschmann/sequelize-typescript](https://sequelize.org/v5/)
+* 数据库ORM框架 [typeorm] [https://typeorm.io/](https://typeorm.io/)
 * 登录认证 [Passport.js] [http://www.passportjs.org/](http://www.passportjs.org/)
-* 数据接口 [GraphQl] [https://graphql.cn/](https://graphql.cn/)
-* GraphQl扩展 [type-graphql] [https://typegraphql.ml/](https://typegraphql.ml/)
 * 文档 [swagger-ui-express] [https://www.npmjs.com/package/swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express)
-* WebSocket [socket.io] [https://socket.io](https://socket.io)

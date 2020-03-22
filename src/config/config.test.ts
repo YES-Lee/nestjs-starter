@@ -1,4 +1,6 @@
-export default () => ({
+import { Config } from './config.module';
+
+const config: Config = {
   app: {
     port: 3100,
   },
@@ -13,11 +15,9 @@ export default () => ({
     password: '123456',
     database: 'test',
   },
-  graphql: {
-    debug: false,
-    playground: false,
-  },
   swagger: {
     enable: false
   }
-});
+};
+
+export default config;

@@ -7,7 +7,6 @@
   "keywords": [
     "nest",
     "nodejs",
-    "graphql",
     "node框架"
   ],
   "repository": {
@@ -38,16 +37,12 @@
     "@nestjs/common": "^6.7.2",
     "@nestjs/config": "^0.0.9",
     "@nestjs/core": "^6.7.2",
-    "@nestjs/graphql": "^6.5.3",
     "@nestjs/jwt": "^6.1.1",
     "@nestjs/passport": "^6.1.1",
     "@nestjs/platform-express": "^6.7.2",
     "@nestjs/swagger": "^4.1.2",
-    "@types/passport-jwt": "^3.0.3",
     "apollo-server-express": "^2.9.15",
-    "graphql": "^14.5.8",
-    "graphql-subscriptions": "^1.1.0",
-    "graphql-tools": "^4.0.6",
+    "lodash": "^4.17.15",
     "mysql2": "^2.1.0",
     "nestjs-pino": "^0.6.0",
     "passport": "^0.4.1",
@@ -57,9 +52,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.4",
-    "sequelize": "^5.21.3",
-    "sequelize-typescript": "^1.1.0",
-    "swagger-ui-express": "^4.1.2"
+    "swagger-ui-express": "^4.1.2",
+    "typeorm": "^0.2.24"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.9.0",
@@ -68,6 +62,7 @@
     "@types/express": "^4.17.1",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.5",
+    "@types/passport-jwt": "^3.0.3",
     "@types/supertest": "^2.0.8",
     "cross-env": "^6.0.3",
     "husky": "^4.0.7",

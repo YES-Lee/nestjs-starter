@@ -2,9 +2,6 @@ import { Module, Global, HttpModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
-import { GraphqlModule } from './graphql/graphql.module';
-import { AppResolver } from './app.resolver';
-import { appProviders } from './app.providers';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { LoggerModule } from 'nestjs-pino';
@@ -16,7 +13,6 @@ import { ConfigService } from '@nestjs/config';
 @Module({
   imports: [
     DatabaseModule,
-    GraphqlModule,
     AuthModule,
     UserModule,
     HttpModule.register({
@@ -38,7 +34,7 @@ import { ConfigService } from '@nestjs/config';
     ConfigModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver, ...appProviders],
-  exports: [AuthModule],
+  providers: [AppService],
+  exports: [AuthModule, DatabaseModule],
 })
 export class AppModule {}

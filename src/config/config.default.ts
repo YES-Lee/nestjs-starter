@@ -1,6 +1,7 @@
 import * as path from 'path';
+import { Config } from './config.module';
 
-export default () => ({
+const config: Config = {
   app: {
     version: '0.1.1',
     port: 3001,
@@ -13,12 +14,10 @@ export default () => ({
     level: 'info',
     path: path.resolve(__dirname, '../app.log')
   },
-  graphql: {
-    debug: true,
-    playground: true,
-  },
   swagger: {
     enable: true,
     path: 'swagger'
   }
-});
+};
+
+export default config;

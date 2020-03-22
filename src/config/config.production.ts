@@ -1,6 +1,7 @@
 import * as path from 'path';
+import { Config } from './config.module';
 
-export default () => ({
+const config: Config = {
   app: {
     port: 3100,
   },
@@ -20,11 +21,9 @@ export default () => ({
     password: '123456',
     database: 'test',
   },
-  graphql: {
-    debug: false,
-    playground: false,
-  },
   swagger: {
     enable: false
   }
-});
+};
+
+export default config;
