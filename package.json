@@ -41,7 +41,7 @@
     "@nestjs/passport": "^6.1.1",
     "@nestjs/platform-express": "^6.7.2",
     "@nestjs/swagger": "^4.1.2",
-    "apollo-server-express": "^2.9.15",
+    "apollo-server-express": "^2.14.2",
     "lodash": "^4.17.15",
     "mysql2": "^2.1.0",
     "nestjs-pino": "^0.6.0",
